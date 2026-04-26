@@ -7,6 +7,7 @@ COPY package.json .
 RUN npm install --production
 
 COPY index.js .
+COPY setup-categories.js .
 
 EXPOSE 3788
 
