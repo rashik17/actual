@@ -7,7 +7,7 @@ services:
     networks:
       proxy:
     env_file:
-      - .env
+      - stack.env
     volumes:
       - actual-storage:/data
     healthcheck:
@@ -28,7 +28,7 @@ services:
       networks:
         proxy:
       env_file:
-        - .env
+        - stack.env
       environment:
       # Override the server URL to use internal Docker networking
       # This only applies to actual-auto-sync, not other services
