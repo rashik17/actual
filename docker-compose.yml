@@ -33,6 +33,8 @@ services:
       # Override the server URL to use internal Docker networking
       # This only applies to actual-auto-sync, not other services
         ACTUAL_SERVER_URL: http://actual_server:5006
+      labels:
+        - "com.centurylinklabs.watchtower.enable=true"
   # ── Actual Budget API Bridge ──────────────────────────────────────────────
   # Exposes @actual-app/api as a real REST API for n8n to consume.
   # The sync server has no budget data API — this bridge provides it.
