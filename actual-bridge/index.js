@@ -234,6 +234,39 @@ app.get('/rules', async (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
+// ── Bank Sync Endpoint ────────────────────────────────────────────────────────
+app.post('/bank-sync', async (req, res) => {
+  try {
+    const { accountId } = req.body || {};
+    const result = await withActual(async () => {
+      console.log('🔄 Starting bank sync...');
+      await actual.runBankSync(accountId);
+      console.log('🔄 Syncing local database changes to server...');
+      await actual.sync();
+      return { ok: true };
+    });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/bank-sync', async (req, res) => {
+  try {
+    const { accountId } = req.query;
+    const result = await withActual(async () => {
+      console.log('🔄 Starting bank sync...');
+      await actual.runBankSync(accountId);
+      console.log('🔄 Syncing local database changes to server...');
+      await actual.sync();
+      return { ok: true };
+    });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ── Start ─────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`🌉 Actual Bridge listening on :${PORT}`);
