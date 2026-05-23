@@ -1,3 +1,9 @@
+// Polyfill navigator for @actual-app/api in Node.js environment
+global.navigator = {
+  userAgent: 'node',
+  platform: 'node'
+};
+
 const actual = require('@actual-app/api');
 const express = require('express');
 const fs = require('fs');
