@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@actual-app/api": "26.5.2",
+    "@actual-app/api": "26.8.1",
     "express": "^4.18.2"
   }
 }
